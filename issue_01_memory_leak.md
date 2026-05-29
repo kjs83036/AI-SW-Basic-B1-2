@@ -36,6 +36,21 @@ Killed
 
 ### 2-4. monitor.sh 시스템 모니터링 결과 (장애 진행 중 실측)
 ```
+
+====== SYSTEM MONITOR RESULT ======
+
+[HEALTH CHECK]
+Checking process 'agent-app-linux-x86'... [OK] (PID: 461)
+Checking port 15034... [OK]
+
+[STATUS CHECK]
+Firewall (UFW)... [OK] active
+
+[RESOURCE MONITORING]
+CPU Usage : 0.0%
+MEM Usage : 5.4%
+DISK Used : 1%
+
 ====== SYSTEM MONITOR RESULT ======
 
 [HEALTH CHECK]
