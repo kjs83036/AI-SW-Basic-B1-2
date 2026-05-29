@@ -17,7 +17,7 @@
  [ MEMORY ] Limit: 256MB 		[ WARNING: Recommend Over 256MB ]
 ```
 
-### 2-2. Application Log — 힙 단조 증가 후 한도 초과 자가종료
+### 2-2. Application Log — 힙 단조 증가 후 한도 초과 자가종료 그리고 메모리 증가 케이스
 ```
 2026-05-21 17:59:49,556 [INFO] [MemoryWorker] Current Heap: 25MB
 2026-05-21 17:59:52,573 [INFO] [MemoryWorker] Current Heap: 50MB
@@ -27,6 +27,14 @@
 2026-05-21 18:00:20,827 [CRITICAL] [MemoryGuard] Memory limit exceeded (275MB >= 256MB) / (Recommend Over 256MB)
 2026-05-21 18:00:20,827 [CRITICAL] [MemoryGuard] Self-terminating process 49 to prevent system instability.
 Killed
+
+2026-05-29 11:59:58,663 [INFO] [MemoryWorker] Current Heap: 425MB
+2026-05-29 12:00:01,704 [INFO] [MemoryWorker] Current Heap: 450MB
+2026-05-29 12:00:04,758 [INFO] [MemoryWorker] Current Heap: 475MB
+2026-05-29 12:00:07,806 [INFO] [MemoryWorker] Current Heap: 500MB
+2026-05-29 12:00:10,862 [INFO] [MemoryWorker] Current Heap: 525MB
+2026-05-29 12:00:15,902 [INFO] [MemoryWorker] Current Heap: 25MB
+2026-05-29 12:00:18,957 [INFO] [MemoryWorker] Current Heap: 50MB
 ```
 
 ### 2-3. 프로세스 종료 코드
