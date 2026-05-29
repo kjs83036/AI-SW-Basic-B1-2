@@ -14,12 +14,9 @@
 
 - `agent-app-leak` — 제공 ELF 바이너리 (원본 파일명 그대로, 이름변경 불필요)
 - `monitor.sh` — 첨부 관제 스크립트 (`APP_NAME=agent-app-leak`)
+- `verify2.sh` - 자동 검증
+- `b-2.sh` - agent-app-leak, verify2.sh 자동 카피
 
-```bash
-cp output_*/entrypoint2.sh      ./entrypoint2.sh
-cp output_*/verify2.sh          ./verify2.sh
-cp output_*/docker-wrapper2.sh  ./docker-wrapper2.sh
-```
 
 ## 실행 방법
 
