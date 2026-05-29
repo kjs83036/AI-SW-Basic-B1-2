@@ -17,7 +17,7 @@
  [ CPU    ] Limit: 90%  		[ WARNING: Recommend Under 50% ]
 ```
 
-### 2-2. Application Log — 부하 상승 후 임계 위반 종료
+### 2-2. Application Log — 부하 상승 후 임계 위반 종료 그리고 cpu_max_occupy변경
 ```
 2026-05-21 18:01:39,689 [INFO] [CpuWorker] Current Load: 5.00%
 2026-05-21 18:01:42,789 [INFO] [CpuWorker] Current Load: 9.43%
