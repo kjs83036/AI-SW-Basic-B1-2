@@ -27,7 +27,7 @@ TRIG_MEM="${VERIFY_TRIG_MEM:-256}"      # 낮은 한도 → 누수가 빠르게 
 TRIG_CPU="${VERIFY_TRIG_CPU:-90}"       # 권장(50%) 초과 → CPU watchdog 발동
 TRIG_THR="${VERIFY_TRIG_THR:-true}"     # 멀티스레드 → 교착
 
-WAIT_SECS="${VERIFY_WAIT:-120}"         # 시나리오당 최대 관찰 시간(초)
+WAIT_SECS="${VERIFY_WAIT:-60}"         # 시나리오당 최대 관찰 시간(초)
 # 주의: 앱은 AGENT_PORT 가 15034 가 아니면 부팅을 거부한다(포트 하드코딩).
 #       따라서 verify2.sh 는 상시 앱이 떠 있지 않은 컨테이너에서 실행해야 한다.
 #       (docker run image /usr/local/bin/verify2.sh ... 권장. start-entrypoint2
