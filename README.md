@@ -6,7 +6,7 @@
 — 메모리 누수/OOM, CPU 과점유, 교착상태(Deadlock) — 를 격리된 Docker 환경에서
 재현·진단하고 GitHub Issue 형태의 트러블슈팅 리포트로 정리한다(PDF §2~§4, §8).
 추가로, 작성한 리포트의 증거(Evidence)가 실제 동작과 일치하는지를
-**자동(`verify2.sh`)·수동(`MANUAL_VERIFICATION.md`)** 두 방식으로 검증한다.
+수동(`MANUAL_VERIFICATION.md`)** 두 방식으로 검증한다.
 
 ## 사전 준비 (빌드 컨텍스트)
 
@@ -14,7 +14,6 @@
 
 - `agent-app-leak` — 제공 ELF 바이너리 (원본 파일명 그대로, 이름변경 불필요)
 - `monitor.sh` — 첨부 관제 스크립트 (`APP_NAME=agent-app-leak`)
-- `entrypoint2.sh`, `verify2.sh`, `docker-wrapper2.sh` — 본 산출물. 빌드 전 이 폴더로 복사한다.
 
 ```bash
 cp output_*/entrypoint2.sh      ./entrypoint2.sh
@@ -24,33 +23,19 @@ cp output_*/docker-wrapper2.sh  ./docker-wrapper2.sh
 
 ## 실행 방법
 
-수정된 Dockerfile 은 `ENTRYPOINT docker-wrapper2.sh` + `CMD bash` 구조다.
-첫 인자로 실행 모드가 갈린다.
 
 ```bash
 # 1) 이미지 빌드
-docker build --platform=linux/amd64 -t agent-app:b2 .
+docker build --platform=linux/amd64 -t agent-monitor .
 
 # 2) 풀 기동 (sshd/cron/ufw + monitor.sh 매분 + 앱 정상 실행)
-docker run -d --platform=linux/amd64 --name agent-app agent-app:b2 start-entrypoint2
-
-# 3) 장애 재현 (start-entrypoint2 + 환경변수로 시나리오 선택)
-docker run --rm --platform=linux/amd64 -e MEMORY_LIMIT=256 \
-  agent-app:b2 start-entrypoint2     # 메모리 누수
-docker run --rm --platform=linux/amd64 -e CPU_MAX_OCCUPY=90 \
-  agent-app:b2 start-entrypoint2     # CPU 과점유
-docker run --rm --platform=linux/amd64 -e MULTI_THREAD_ENABLE=true \
-  agent-app:b2 start-entrypoint2     # 교착상태
-
-# 인자 없이 실행하면 앱 미기동, bash 셸만 (점검·검증용)
-docker run -it --rm --platform=linux/amd64 agent-app:b2
-```
+docker run -d --platform=linux/amd64 --name agent-minitor am start-entrypoint
 
 ## 검증 방법
 
 ```bash
 # [자동] 3개 리포트 증거를 한 번에 검증 (앱 미기동 컨테이너에서)
-docker run --rm --platform=linux/amd64 agent-app:b2 /usr/local/bin/verify2.sh
+docker run --rm --platform=linux/amd64 am /usr/local/bin/verify2.sh
 # 단일 시나리오: ... agent-app:b2 /usr/local/bin/verify2.sh memory | cpu | deadlock
 
 # [수동] MANUAL_VERIFICATION.md 의 0~3절 절차를 한 줄씩 직접 실행
@@ -58,8 +43,6 @@ docker run --rm --platform=linux/amd64 agent-app:b2 /usr/local/bin/verify2.sh
 
 ## 파일
 
-- `docker-wrapper2.sh` — ENTRYPOINT 래퍼 (start-entrypoint2 / 셸 / 임의명령 분기)
-- `entrypoint2.sh` — 풀 기동 진입점 (sshd/cron/ufw, monitor.sh cron 등록, 앱 실행)
 - `verify2.sh` — 자동 검증 (3개 장애 시나리오 재현 → 증거 신호 PASS/FAIL)
 - `MANUAL_VERIFICATION.md` — 수동 검증 가이드
 - `issue_01_memory_leak.md` — 메모리 누수 트러블슈팅 리포트
