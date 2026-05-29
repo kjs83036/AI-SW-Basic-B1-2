@@ -5,7 +5,6 @@
 ```mermaid
 flowchart TD
     DF[Dockerfile<br/>환경 빌드] --> MON[monitor.sh<br/>매분 cron 관제]
-    DF --> VS[verify2.sh<br/>자동 검증]
     DF --> RUN[agent-app-leak 실행<br/>user=agent-admin]
 
     MON -->|장애 1차 포착| LOG[(monitor.log<br/>CPU/MEM/DISK)]
@@ -20,8 +19,9 @@ flowchart TD
     M3 --> R3[issue_03_deadlock.md]
 
     R1 & R2 & R3 --> V{리포트 증거 검증}
-    V -->|자동| VS
+    V -->|자동| VS[verify2.sh<br/>자동 검증]
     V -->|수동| MV[MANUAL_VERIFICATION.md]
+    
     VS --> RESULT[PASS / FAIL 요약]
     MV --> RESULT
 ```
