@@ -12,7 +12,7 @@ B1-1과 이어지는 과제이며 필요한 파일은 해당 저장소에서 볼
 ## 사전 준비 (빌드 컨텍스트)
 
 `Dockerfile` 은 빌드 컨텍스트(이 폴더)에서 다음 파일을 필요로 한다.
-
+- `monitor.sh` — 첨부 관제 스크립트
 - `agent-app-leak` — 제공 ELF 바이너리 (원본 파일명 그대로, 이름변경 불필요)
 - `verify2.sh` - 자동 검증
 - `b-2.sh` - agent-app-leak, verify2.sh 자동 카피
