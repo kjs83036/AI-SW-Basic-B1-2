@@ -71,6 +71,36 @@ DISK Used : 1%
 > monitor.sh 는 매분 1회 스냅샷을 찍는다. CPU 스파이크는 약 30초 내 발생 후 종료되므로
 > 매분 샘플에서 포착되지 않을 수 있다. 실시간 부하는 앱 로그(`[CpuWorker] Current Load`)와
 > `top` 교차 확인이 권장된다(MANUAL_VERIFICATION.md §2 참조).
+>
+### 2-5 top 실측
+```
+PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    459 root      20   0    4340   2232   1892 S   0.0   0.0   0:00.00 su
+    460 agent-a+  20   0    2904   1940   1664 S   0.0   0.0   0:00.10 agent-a+
+    461 agent-a+  30  10  368100 216740   3180 S   0.0   1.3   1:50.28 agent-a+
+
+top - 11:48:46 up  6:02,  0 user,  load average: 0.00, 0.01, 0.00
+Tasks:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  4.9 ni, 95.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  16049.5 total,  15346.5 free,    775.4 used,    192.4 buff/cache     
+MiB Swap:  17073.5 total,  17073.5 free,      0.0 used.  15274.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    461 agent-a+  30  10  368100 216740   3180 S  20.0   1.3   1:50.30 agent-a+
+    459 root      20   0    4340   2232   1892 S   0.0   0.0   0:00.00 su
+    460 agent-a+  20   0    2904   1940   1664 S   0.0   0.0   0:00.10 agent-a+
+
+top - 11:48:46 up  6:02,  0 user,  load average: 0.00, 0.01, 0.00
+Tasks:   3 total,   0 running,   3 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  3.3 ni, 96.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  16049.5 total,  15346.5 free,    775.4 used,    192.4 buff/cache     
+MiB Swap:  17073.5 total,  17073.5 free,      0.0 used.  15274.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    461 agent-a+  30  10  368100 216740   3180 S  20.0   1.3   1:50.32 agent-a+
+    459 root      20   0    4340   2232   1892 S   0.0   0.0   0:00.00 su
+    460 agent-a+  20   0    2904   1940   1664 S   0.0   0.0   0:00.10 agent-a+
+```
 
 ## 3. Root Cause Analysis (원인 분석)
 
