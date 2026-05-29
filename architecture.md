@@ -4,9 +4,13 @@
 
 ```mermaid
 flowchart TD
-    DF[Dockerfile<br/>환경 빌드]
+    DF[Dockerfile<br/>환경 빌드] --> WRAP[docker-wrapper2.sh<br/>ENTRYPOINT 분기]
     DF --> MON[monitor.sh<br/>매분 cron 관제]
     DF --> VS[verify2.sh<br/>자동 검증]
+
+    WRAP -->|start-entrypoint2| EP[entrypoint2.sh<br/>풀 기동]
+    WRAP -->|verify2.sh 인자| VS
+    WRAP -->|인자 없음| SH[bash 셸<br/>앱 미기동]
 
     EP -->|sshd/cron/ufw 기동| RUN[agent-app-leak 실행<br/>user=agent-admin]
     EP -->|crontab 등록| MON
