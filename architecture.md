@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    DF[Dockerfile<br/>환경 빌드] --> WRAP[docker-wrapper2.sh<br/>ENTRYPOINT 분기]
+    DF[Dockerfile<br/>환경 빌드]
     DF --> MON[monitor.sh<br/>매분 cron 관제]
     DF --> VS[verify2.sh<br/>자동 검증]
 
