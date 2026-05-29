@@ -58,12 +58,13 @@ Checking process 'agent-app-leak'... [OK] (PID: 461)
 Checking port 15034... [OK]
 
 [STATUS CHECK]
-[WARNING] 방화벽(UFW)이 비활성 상태입니다.
+Firewall (UFW)... [OK] active
 
 [RESOURCE MONITORING]
-CPU Usage : 0.0%
-MEM Usage : 5.2%
-DISK Used : 3%
+CPU Usage : 0.3%
+MEM Usage : 4.8%
+DISK Used : 1%
+
 
 [INFO] Log appended: /var/log/agent-app/monitor.log
 ```
