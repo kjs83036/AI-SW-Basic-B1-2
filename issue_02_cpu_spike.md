@@ -38,7 +38,23 @@ Terminated
 ====== SYSTEM MONITOR RESULT ======
 
 [HEALTH CHECK]
-Checking process 'agent-app-leak'... [OK] (PID: 1)
+Checking process 'agent-app-leak'... [OK] (PID: 461)
+Checking port 15034... [OK]
+
+[STATUS CHECK]
+[WARNING] 방화벽(UFW)이 비활성 상태입니다.
+
+[RESOURCE MONITORING]
+CPU Usage : 0.0%
+MEM Usage : 5.2%
+DISK Used : 3%
+
+[INFO] Log appended: /var/log/agent-app/monitor.log
+
+====== SYSTEM MONITOR RESULT ======
+
+[HEALTH CHECK]
+Checking process 'agent-app-leak'... [OK] (PID: 461)
 Checking port 15034... [OK]
 
 [STATUS CHECK]
