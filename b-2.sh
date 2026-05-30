@@ -12,6 +12,7 @@ LEAK_BIN="${SCRIPT_DIR}/agent-app-leak"
 VERIFY_SRC="${SCRIPT_DIR}/verify2.sh"
 LEAK_DST=/home/agent-admin/agent-app/agent-app-leak
 VERIFY_DST=/usr/local/bin/verify2.sh
+APP_PID=$(pgrep -f "agent-app-leak" | grep -v "su" | tail -n1)
 #
 ## ── 색상 헬퍼 ─────────────────────────────────────────
 #RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
